@@ -1,0 +1,157 @@
+﻿@model IEnumerable<CRUD.Models.Products>
+
+@{
+    ViewData["Title"] = "Index1";
+}
+
+<style>
+
+    body {
+        margin: 0;
+        height: 100%;
+        background-image: url('/Image/bg4.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .row {
+        display: flex;
+        align-items: center;
+        min-height: 90vh;
+        color:black
+    }
+
+    .BF {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, .2);
+        backdrop-filter: blur(20px);
+        color: #fff;
+        border-radius: 10px;
+        padding: 30px 40px;
+    }
+
+    .BF2 {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, .2);
+        backdrop-filter: blur(30px);
+        color: #fff;
+        border-radius: 10px;
+        padding: 30px 40px;
+    }
+
+    .col-md-4 h1 {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .form-group {
+        width: 100%;
+        height: 50px;
+        margin: 30px 0;
+    }
+
+        .form-group input span {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 40px;
+            font-size: 16px;
+            color: #fff;
+            padding: 20px 45px 20px 20px;
+        }
+
+        .form-group .btn {
+            width: 50%;
+            height: 45px;
+            background: #fff;
+            border: none;
+            outline: none;
+            border-radius: 20px;
+            box-shadow;
+            0 0 10px rgba(0, 0, 0, .1);
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+        }
+
+    .btn-container {
+        display: inline-flex;
+        align-items: center;
+        height: 40px;
+        padding: 0 20px;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        padding: 0 20px;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 5px;
+    }
+
+    input[type="submit"].btn {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none;
+        background-color: #007bff;
+        color: white;
+    }
+
+    a.btn {
+        position: fixed;
+        right: 0;
+        top: 0;
+        margin: 10px;
+        background-color: white;
+        color: black;
+        border-radius: 20px;
+        font-size: 16px;
+        padding: 20px 20px 20px 20px;
+    }
+
+</style>
+
+<div >
+    <a asp-area="" asp-controller="Admin" asp-action="Login" class="btn btn-primary">Login</a>
+</div>
+<br />
+<div class="BF">
+    <h1 style="text-align:center; color:white; padding: 30px 30px;">SHOP</h1>
+<div class="row">
+	
+    @foreach (var product in Model)
+    {
+        <div class="col-sm-3">
+            <div class="card mb-3 mx-3 box-shadow">
+                @if (product.Image != null)
+                {
+                    var base64Image = Convert.ToBase64String(product.Image);
+                    var imgSrc = String.Format("data:image/png;base64,{0}", base64Image);
+                    <img src="@imgSrc" class="card-img-top" style="width: 100%; height: 250px;" alt="Product Image" />
+                }
+                else
+                {
+                    <img src="~/images/no-image.png" class="card-img-top" style="width: 100%; height: 250px;" alt="No Image Available" />
+                }
+
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Description</p>
+                    <p class="card-text">Price: $@product.Price</p>
+                </div>
+            </div>
+        </div>
+    }
+	</div>
+</div>

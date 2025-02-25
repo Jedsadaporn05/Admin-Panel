@@ -1,0 +1,178 @@
+﻿@model CRUD.Models.Products
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<style>
+    body {
+        margin: 0;
+        height: 100%;
+        background-image: url('/Image/bg4.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 90vh;
+    }
+
+        .row h1 {
+            font-size: 36px;
+            text-align: center;
+            color: white;
+        }
+
+    .col-md-4 {
+        width: 420px;
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, .2);
+        backdrop-filter: blur(20px);
+        color: #fff;
+        border-radius: 10px;
+        padding: 30px 40px;
+    }
+
+        .col-md-4 h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+
+    .col-sm-2 .col-sm-10 {
+        width: 100%;
+        height: 50px;
+        margin: 30px 0;
+    }
+
+    .col-sm-10 {
+        width: 335px;
+        min-height: 5px;
+        color: black;
+        background: White;
+        border: 2px solid rgba(255, 255, 255, .2);
+        backdrop-filter: blur(20px);
+        border-radius: 5px;
+        padding: 5px 10px;
+    }
+
+    .group {
+        width: 100%;
+        height: 50px;
+        margin: 30px 0;
+    }
+
+        .group .btn {
+            width: 100%;
+            height: 45px;
+            background: #fff;
+            border: none;
+            outline: none;
+            border-radius: 20px;
+            box-shadow;
+            0 0 10px rgba(0, 0, 0, .1);
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+        }
+
+    .btn-container {
+        display: inline-flex;
+        align-items: center;
+        height: 40px;
+        padding: 0 20px;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        padding: 0 20px;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 5px;
+    }
+
+    input[type="submit"].btn {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none;
+        background-color: #007bff;
+        color: white;
+    }
+
+    a.btn {
+        background-color: #007bff;
+        color: white;
+    }
+
+</style>
+
+
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Delete Products</h1>
+
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProductID)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.ProductID)
+            </div>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </div>
+            <div class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Image)
+            </div>
+            <br />
+            <div class="text-center">
+                @if (Model.Image != null)
+                {
+                    var base64Image = Convert.ToBase64String(Model.Image);
+                    var imgSrc = String.Format("data:image/png;base64,{0}", base64Image);
+                    <img src="@imgSrc" style=" max-width:300px; border-radius:5px;" />
+                }
+                else
+                {
+                    <p>No image available</p>
+                }
+			</div>
+            <div class="group btn-container">
+				<a asp-action="Index" class="btn btn-primary">Back</a>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="ProductID"/>
+                    <input type="submit" value="Confirm Delete" class="btn btn-primary" />
+				</form>
+			</div>
+            
+    </div>
+</div>
+
